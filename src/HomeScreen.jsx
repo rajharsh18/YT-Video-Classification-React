@@ -68,8 +68,8 @@ const HomeScreen = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-black bg-opacity-50 backdrop-blur-sm z-10">
-        <nav className="flex items-center justify-between px-8 py-4">
+      <header className="fixed top-0 w-full bg-black/50 backdrop-blur-sm z-10">
+        <div className="flex items-center justify-between px-8 py-4">
           <div className="flex items-center space-x-3">
             <img
               src="/logo2.jpg"
@@ -83,29 +83,33 @@ const HomeScreen = () => {
               Gen<span className="text-red-500">Z</span>
             </div>
           </div>
-          {result && (
-            <button
-              onClick={handleReset}
-              className="px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-700 transition-colors duration-200"
-            >
-              Classify Another Video
-            </button>
-          )}
-        </nav>
+          <div>
+            <h1 className="text-2xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
+              YouTube Video Classifier
+            </h1>
+          </div>
+          <div className="w-50">
+            {result && (
+              <button
+                onClick={handleReset}
+                className="px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-700 transition-colors duration-200 cursor-pointer disabled:cursor-not-allowed"
+              >
+                Classify Another Video
+              </button>
+            )}
+          </div>
+        </div>
       </header>
 
       {/* Main Content */}
-      <main className="pt-20 px-8 py-16">
+      <main className="pt-25 px-8 pb-8">
         <div className="max-w-6xl mx-auto">
           {!result ? (
             // Initial Form View
             <div className="space-y-12">
               {/* Title */}
               <div className="text-center">
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
-                  YouTube Video Classifier
-                </h1>
-                <p className="text-xl text-gray-300 animate-fade-in">
+                <p className="text-2xl text-white animate-fade-in">
                   Determine if a YouTube video is educational and discover its
                   category
                 </p>
@@ -114,7 +118,7 @@ const HomeScreen = () => {
               {/* Features */}
               <div className="grid md:grid-cols-3 gap-8 text-center">
                 <div className="space-y-4">
-                  <div className="w-16 h-16 bg-blue-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
                     <svg
                       className="w-8 h-8 text-blue-400"
                       fill="none"
@@ -138,7 +142,7 @@ const HomeScreen = () => {
                   </p>
                 </div>
                 <div className="space-y-4">
-                  <div className="w-16 h-16 bg-green-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
                     <svg
                       className="w-8 h-8 text-green-400"
                       fill="none"
@@ -161,7 +165,7 @@ const HomeScreen = () => {
                   </p>
                 </div>
                 <div className="space-y-4">
-                  <div className="w-16 h-16 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto">
                     <svg
                       className="w-8 h-8 text-red-400"
                       fill="none"
@@ -190,7 +194,7 @@ const HomeScreen = () => {
                 {/* Error Message */}
                 {error && (
                   <div className="max-w-2xl mx-auto">
-                    <div className="bg-red-500 bg-opacity-20 border border-red-500 rounded-lg p-4 animate-fade-in">
+                    <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 animate-fade-in">
                       <p className="text-red-200 text-center">{error}</p>
                     </div>
                   </div>
@@ -214,44 +218,40 @@ const HomeScreen = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-8 py-4 text-lg font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 active:scale-95"
+                    className="px-8 py-4 text-lg font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 active:scale-95 cursor-pointer"
                   >
                     {loading ? "Analyzing Video..." : "Classify Video"}
                   </button>
                 </div>
-
-                {/* Loading Spinner */}
-                {loading && (
-                  <div className="flex flex-col items-center space-y-4">
-                    <LoadingSpinner />
-                    <p className="text-gray-400 text-sm">
-                      Analyzing video content...
-                    </p>
-                  </div>
-                )}
               </form>
             </div>
           ) : (
             // Result View
             <div>
               <VideoResult result={result} />
-              {result && (
-                <button
-                  onClick={handleReset}
-                  className="px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-700 transition-colors duration-200"
-                >
-                  Classify Another Video
-                </button>
-              )}
+              <div className="text-center mt-8">
+                {result && (
+                  <button
+                    onClick={handleReset}
+                    className="px-4 py-2 text-lg font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200 cursor-pointer disabled:cursor-not-allowed"
+                  >
+                    Classify Another Video
+                  </button>
+                )}
+              </div>
             </div>
           )}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="text-center py-8">
+      <footer className="text-center pb-8">
         <p className="text-gray-400">© Team GenZ • YouTube Video Classifier</p>
       </footer>
+      <LoadingSpinner
+        isVisible={loading}
+        message="Processing YouTube Video!!"
+      />
     </div>
   );
 };

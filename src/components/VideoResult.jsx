@@ -36,8 +36,8 @@ const VideoResult = ({ result }) => {
         <div
           className={`inline-flex items-center px-6 py-3 rounded-full text-lg font-semibold ${
             isEducational
-              ? "bg-green-500 bg-opacity-20 border border-green-500 text-green-300"
-              : "bg-red-500 bg-opacity-20 border border-red-500 text-red-300"
+              ? "bg-green-500/20 border border-green-500 text-green-300"
+              : "bg-red-500/20 border border-red-500 text-red-300"
           }`}
         >
           <span
@@ -58,7 +58,7 @@ const VideoResult = ({ result }) => {
 
       {/* Video Embed */}
       <div className="flex justify-center">
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-xl">
           <div
             className="relative w-full bg-gray-800 rounded-lg overflow-hidden shadow-2xl"
             style={{ paddingBottom: "56.25%" }}
