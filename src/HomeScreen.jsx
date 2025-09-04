@@ -66,7 +66,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex flex-col">
       {/* Header */}
       <header className="fixed top-0 w-full bg-black/50 backdrop-blur-sm z-10">
         <div className="flex items-center justify-between px-8 py-4">
@@ -102,7 +102,7 @@ const HomeScreen = () => {
       </header>
 
       {/* Main Content */}
-      <main className="pt-25 px-8 pb-8">
+      <main className="pt-25 px-8 pb-8 flex-1 flex flex-col justify-center">
         <div className="max-w-6xl mx-auto">
           {!result ? (
             // Initial Form View
@@ -245,8 +245,12 @@ const HomeScreen = () => {
       </main>
 
       {/* Footer */}
-      <footer className="text-center pb-8">
-        <p className="text-gray-400">© Team GenZ • YouTube Video Classifier</p>
+      <footer className="mt-auto py-3 bg-black/30">
+        <div className="text-center">
+          <p className="text-gray-400">
+            © Team GenZ • YouTube Video Classifier
+          </p>
+        </div>
       </footer>
       <LoadingSpinner
         isVisible={loading}
