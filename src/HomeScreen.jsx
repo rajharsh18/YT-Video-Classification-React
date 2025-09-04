@@ -28,13 +28,16 @@ const HomeScreen = () => {
     setResult(null);
 
     try {
-      const response = await fetch("http://192.168.1.8:5000/classify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: url.trim() }),
-      });
+      const response = await fetch(
+        "https://yt-video-classification-flask.onrender.com/classify",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url: url.trim() }),
+        }
+      );
 
       const data = await response.json();
 
